@@ -19,9 +19,13 @@
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "0.0.19",
     "socket.io-client": "^2.3.0",
-    "vue-socket.io-extended": "^4.0.1"
+    "vue-socket.io-extended": "^4.0.1",
+    "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
+    "deploy:gh-pages": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "deploy": "npm run generate:gh-pages && npm run deploy:gh-pages"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "push-dir": "^0.4.1"
   }
 }
