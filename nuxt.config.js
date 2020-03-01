@@ -74,3 +74,12 @@ module.exports = {
     socketUrl: process.env.SOCKET_URL || 'http://localhost:5001'
   }
 }
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/iota-spot-landingpage/'
+  }
+} : {}
+
+export default {
+  ...routerBase
+}
