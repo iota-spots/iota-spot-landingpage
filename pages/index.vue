@@ -5,24 +5,10 @@
       <h2
         class="subtitle"
       >Spots are points of interest on the map which holds IOTA, and the first one in the range of the spot can catch them all.</h2>
-      <div id="map-wrap">
-        <no-ssr>
-          <l-map
-            class="map"
-            :zoom="zoom"
-            :center="center"
-            @update:zoom="zoomUpdated"
-            @update:center="centerUpdated"
-            @update:bounds="boundsUpdated"
-          >
-            <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
-            <l-marker :lat-lng="[52.507657, 13.377921]"></l-marker>
-            <l-marker :lat-lng="center"></l-marker>
-          </l-map>
-        </no-ssr>
-      </div>
+      <h2>Create a spot on the map</h2>
+      <Map />
+      <CreateSpot />
       <div class="spots">
-        <h2>Spots</h2>
         <el-row class="spots-details" :gutter="12">
           <el-col :span="8" class="">
             <el-card shadow="always">
@@ -61,28 +47,13 @@
 </template>
 
 <script>
+import Map from '@/components/Map'
+import CreateSpot from '@/components/CreateSpot'
+
 export default {
-  components: {},
-  data() {
-    return {
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-      zoom: 13,
-      center: [52.529562, 13.413047],
-      bounds: null
-    };
-  },
-  methods: {
-    zoomUpdated(zoom) {
-      this.zoom = zoom;
-    },
-    centerUpdated(center) {
-      this.center = center;
-    },
-    boundsUpdated(bounds) {
-      this.bounds = bounds;
-    }
-  }
-};
+  components: { Map, CreateSpot }
+}
+
 </script>
 
 <style>
@@ -102,47 +73,27 @@ export default {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 70px;
   color: #35495e;
   letter-spacing: 1px;
+  margin-top: 80px;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 32px;
   color: #526488;
   word-spacing: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
 }
 
 .links {
   padding-top: 15px;
 }
 
-#map-wrap {
-  height: 50vh;
-}
-
-.map {
-  height: 100%;
-  width: 100%;
-}
-
-.spots {
-  padding-top: 80px;
-  padding-bottom: 20px;
-  float: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  width: 80%;
-  display: block !important;
-  margin-right: auto !important;
-  margin-left: auto !important;
-  float: none !important; /* Added */
-}
 .el-col {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   display: block !important;
   margin-right: auto !important;
   margin-left: auto !important;

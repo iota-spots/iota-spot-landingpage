@@ -1,4 +1,6 @@
 
+require('dotenv').config()
+
 module.exports = {
   mode: 'universal',
   /*
@@ -29,7 +31,11 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    {
+      src: '~/plugins/socket.io.js',
+      ssr: false // <-- this line is required
+    }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -62,5 +68,9 @@ module.exports = {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    backendUrl: process.env.BACKEND_URL || 'http://localhost:5000',
+    socketUrl: process.env.SOCKET_URL || 'http://localhost:5001'
   }
 }
