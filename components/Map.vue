@@ -1,6 +1,6 @@
 <template>
  <div id="map-wrap">
-        <no-ssr>
+        <client-only>
           <l-map
             class="map"
             :zoom="zoom"
@@ -17,7 +17,7 @@
             </l-marker>
 
           </l-map>
-        </no-ssr>
+        </client-only>
       </div> 
 </template>
 
