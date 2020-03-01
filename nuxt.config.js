@@ -1,6 +1,11 @@
 
 require('dotenv').config()
 
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/iota-spot-landingpage/'
+  }
+} : {}
 module.exports = {
   mode: 'universal',
   /*
@@ -72,14 +77,6 @@ module.exports = {
   env: {
     backendUrl: process.env.BACKEND_URL || 'http://localhost:5000',
     socketUrl: process.env.SOCKET_URL || 'http://localhost:5001'
-  }
-}
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/iota-spot-landingpage/'
-  }
-} : {}
-
-export default {
+  },
   ...routerBase
 }
